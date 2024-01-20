@@ -7,3 +7,6 @@
 
 # BenchmarkDotNet
 **/BenchmarkDotNet.Artifacts/*
+
+fuzz/.store
+fuzz/sharpfuzz

@@ -7,7 +7,7 @@ param (
     [string]$corpus,
     [string]$dict = $null,
     [int]$timeout = 10,
-    [string]$command = "sharpfuzz"
+    [string]$command = "./sharpfuzz"
 )
 
 Set-StrictMode -Version Latest

@@ -1,22 +1,63 @@
-New-Item -Path "corpus/test" -ItemType File -Force -Value "W"
+param (
+    [Parameter(Mandatory = $true)]
+    [string]$project,
+    [Parameter(Mandatory = $true)]
+    [string]$i,
+    [string]$x = $null,
+    [int]$t = 10000,
+    [string]$command = "./sharpfuzz"
+)
 
-dotnet publish src/SharpFuzz.CommandLine/SharpFuzz.CommandLine.csproj `
-    --output out `
-    --configuration release `
-    --framework net8.0
+Set-StrictMode -Version Latest
 
-& scripts/fuzz.ps1 `
-    -project tests/Library.Fuzz/Library.Fuzz.csproj `
-    -i corpus `
-    -command out/SharpFuzz.CommandLine
+$outputDir = "bin"
+$findingsDir = "findings"
 
-$output = Get-Content -Path "./findings/.cur_input" -Raw
-$crasher = "Whoopsie"
+if (Test-Path $outputDir) { 
+    Remove-Item -Recurse -Force $outputDir 
+}
 
-if (-not $output.Contains($crasher)) {
-    Write-Error "Crasher is missing from the AFL output"
+if (Test-Path $findingsDir) {
+    Remove-Item -Recurse -Force $findingsDir 
+}
+
+dotnet publish $project -c release -o $outputDir
+
+$projectName = (Get-Item $project).BaseName
+$projectDll = "$projectName.dll"
+$project = Join-Path $outputDir $projectDll
+
+$exclusions = @(
+    "dnlib.dll",
+    "SharpFuzz.dll",
+    "SharpFuzz.Common.dll",
+    $projectDll
+)
+
+$fuzzingTargets = Get-ChildItem $outputDir -Filter *.dll `
+| Where-Object { $_.Name -notin $exclusions } `
+| Where-Object { $_.Name -notlike "System.*.dll" }
+
+if (($fuzzingTargets | Measure-Object).Count -eq 0) {
+    Write-Error "No fuzzing targets found"
     exit 1
 }
 
-Write-Host $crasher
-exit 0
+foreach ($fuzzingTarget in $fuzzingTargets) {
+    Write-Output "Instrumenting $fuzzingTarget"
+    & $command $fuzzingTarget
+    
+    if ($LastExitCode -ne 0) {
+        Write-Error "An error occurred while instrumenting $fuzzingTarget"
+        exit 1
+    }
+}
+
+$env:AFL_SKIP_BIN_CHECK = 1
+
+if ($x) {
+    afl-fuzz -i $i -o $findingsDir -t $t -m none -x $x dotnet $project
+}
+else {
+    afl-fuzz -i $i -o $findingsDir -t $t -m none dotnet $project
+}
