@@ -4,13 +4,10 @@ param (
     [Parameter(Mandatory = $true)]
     [string]$i,
     [string]$x = $null,
-    [int]$t = 10000,
     [string]$command = "./sharpfuzz"
 )
-
-Set-StrictMode -Version Latest
-
-$outputDir = "bin"
+$t= "10000"
+$outputDir="bin"
 $findingsDir = "findings"
 
 if (Test-Path $outputDir) { 
