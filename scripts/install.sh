@@ -19,6 +19,7 @@ dotnet new console --framework net8.0
 dotnet add package Jil
 dotnet add package SharpFuzz
 cp -r ../scripts/Program.cs .
+mkdir corpus && touch corpus/1 && echo '{"menu":{"id":1,"val":"X","pop":{"a":[{"click":"Open()"},{"click":"Close()"}]}}}' > corpus/1
 cd ..
 
 # Install SharpFuzz.CommandLine global .NET tool
