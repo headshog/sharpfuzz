@@ -54,6 +54,11 @@ foreach ($fuzzingTarget in $fuzzingTargets) {
 }
 
 $env:AFL_SKIP_BIN_CHECK = 1
+$env:AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES = 1
+$env:AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES = 1
+$env:AFL_NO_UI = 1
+$env:AFL_PIZZA_MODE = 0
+$env:AFL_SKIP_CPUFREQ = 1
 
 if ($x) {
     afl-fuzz -i $i -o $findingsDir -t $t -m none -x $x dotnet $project

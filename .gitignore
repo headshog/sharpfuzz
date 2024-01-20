@@ -11,3 +11,4 @@
 fuzz/.store
 fuzz/sharpfuzz
 fuzz/corpus
+fuzz/findings
