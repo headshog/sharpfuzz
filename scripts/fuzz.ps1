@@ -8,6 +8,12 @@ param (
     [string]$command = "./sharpfuzz"
 )
 
+# Install SharpFuzz.CommandLine global .NET tool
+# dotnet add package SharpFuzz
+# dotnet tool install SharpFuzz.CommandLine --tool-path ~/sharpfuzz/fuzz
+
+# Set-PSDebug -Trace 1
+
 Set-StrictMode -Version Latest
 
 $outputDir = "bin"

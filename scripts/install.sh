@@ -17,12 +17,12 @@ rm -rf afl-2.52b/
 rm -rf ./fuzz && mkdir ./fuzz && cd ./fuzz
 dotnet new console --framework net8.0
 dotnet add package Jil
-dotnet add package SharpFuzz
 cp -r ../scripts/Program.cs .
 mkdir corpus && touch corpus/1 && echo '{"menu":{"id":1,"val":"X","pop":{"a":[{"click":"Open()"},{"click":"Close()"}]}}}' > corpus/1
 cd ..
 
 # Install SharpFuzz.CommandLine global .NET tool
+dotnet add package SharpFuzz
 dotnet tool install SharpFuzz.CommandLine --tool-path ~/sharpfuzz/fuzz
 
 # To run fuzzing (in fuzz directory): pwsh ../scripts/fuzz.ps1 fuzz.csproj -i corpus
