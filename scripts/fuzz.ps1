@@ -8,12 +8,6 @@ param (
     [string]$command = "./sharpfuzz"
 )
 
-# Install SharpFuzz.CommandLine global .NET tool
-# dotnet add package SharpFuzz
-# dotnet tool install SharpFuzz.CommandLine --tool-path ~/sharpfuzz/fuzz
-
-# Set-PSDebug -Trace 1
-
 Set-StrictMode -Version Latest
 
 $outputDir = "bin"
@@ -66,8 +60,8 @@ $env:AFL_PIZZA_MODE = 0
 $env:AFL_SKIP_CPUFREQ = 1
 
 if ($x) {
-    afl-fuzz -i $i -o $findingsDir -t $t -m none -x $x dotnet $project
+    ~/AFLplusplus/afl-fuzz -i $i -o $findingsDir -t $t -m none -x $x -- /usr/bin/dotnet $project
 }
 else {
-    afl-fuzz -i $i -o $findingsDir -t $t -m none dotnet $project
+    ~/AFLplusplus/afl-fuzz -i $i -o $findingsDir -t $t -m none -- /usr/bin/dotnet $project
 }

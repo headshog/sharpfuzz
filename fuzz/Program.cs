@@ -22,3 +22,14 @@ namespace Jil.Fuzz
     }
   }
 }
+
+/*namespace hello
+{
+  public class Program
+  {
+    public static void Main(string[] args)
+    {
+      Console.WriteLine("Hello, World!");
+    }
+  }
+}*/

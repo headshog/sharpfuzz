@@ -8,7 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Jil" Version="2.17.0" />
+    <!--<PackageReference Include="Jil" Version="2.17.0" />-->
+    <Reference Include="Jil">
+      <HintPath>../Jil/Jil/bin/Debug/net45/Jil.dll</HintPath>
+    </Reference>
     <PackageReference Include="SharpFuzz" Version="2.1.1" />
   </ItemGroup>
 

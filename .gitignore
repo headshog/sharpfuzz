@@ -11,4 +11,6 @@
 fuzz/.store
 fuzz/sharpfuzz
 fuzz/corpus
+fuzz/coverlet
 fuzz/findings
+Jil
