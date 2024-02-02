@@ -59,9 +59,9 @@ $env:AFL_NO_UI = 1
 $env:AFL_PIZZA_MODE = 0
 $env:AFL_SKIP_CPUFREQ = 1
 
-if ($x) {
-    ~/AFLplusplus/afl-fuzz -i $i -o $findingsDir -t $t -m none -x $x -- /usr/bin/dotnet $project
-}
-else {
-    ~/AFLplusplus/afl-fuzz -i $i -o $findingsDir -t $t -m none -- /usr/bin/dotnet $project
-}
+#if ($x) {
+#    ~/AFLplusplus/afl-fuzz -i $i -o $findingsDir -t $t -m none -x $x -- /usr/bin/dotnet $project
+#}
+#else {
+#    ~/AFLplusplus/afl-fuzz -i $i -o $findingsDir -t $t -m none -- /usr/bin/dotnet $project
+#}
