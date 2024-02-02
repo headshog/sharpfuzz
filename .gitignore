@@ -13,4 +13,5 @@ fuzz/sharpfuzz
 fuzz/corpus
 fuzz/coverlet
 fuzz/findings
+fuzz/coverage.info
 Jil
