@@ -17,8 +17,10 @@
 #rm -rf coverage.lcov && mv coverage.info coverage.lcov
 #genhtml -o jil-html coverage.lcov
 
+cd ../Jil && dotnet restore && dotnet build && cd ../fuzz
+#cd Jil && dotnet restore && dotnet build && cd ..
 
-rm -rf coverage.json coverage-hits ../coverage.json ../coverage-hits
+rm -rf obj bin coverage.json coverage-hits ../coverage.json ../coverage-hits
 
 dotnet restore
 dotnet build
