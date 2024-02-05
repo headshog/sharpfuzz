@@ -23,6 +23,7 @@ rm -rf coverage.json coverage-hits ../coverage.json ../coverage-hits
 dotnet restore
 dotnet build
 
+# If something went wrong, need to rebuild Jil
 ./minicover instrument --sources Program.cs --sources ../Jil/
 #./minicover instrument --workdir /home/headshog/sharpfuzz/ --sources fuzz/Program.cs --sources Jil/
 
