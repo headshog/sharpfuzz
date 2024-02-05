@@ -15,5 +15,7 @@ fuzz/corpus
 fuzz/coverlet
 fuzz/findings
 fuzz/coverage.info
+fuzz/coverage.json
 fuzz/coverage-hits
+fuzz/Jil
 Jil
