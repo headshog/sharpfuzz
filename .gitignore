@@ -10,8 +10,10 @@
 
 fuzz/.store
 fuzz/sharpfuzz
+fuzz/minicover
 fuzz/corpus
 fuzz/coverlet
 fuzz/findings
 fuzz/coverage.info
+fuzz/coverage-hits
 Jil
