@@ -5,7 +5,7 @@ param (
     [string]$i,
     [string]$x = $null,
     [int]$t = 10000,
-    [string]$command = "./sharpfuzz"
+    [string]$command = "$HOME/sharpfuzz/fuzz/sharpfuzz"
 )
 
 Set-StrictMode -Version Latest
