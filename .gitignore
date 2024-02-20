@@ -18,5 +18,8 @@ fuzz/coverage.info
 fuzz/coverage.json
 fuzz/coverage-hits
 fuzz/Jil
+fuzz/libfuzzer-dotnet
+fuzz/altcover
 Jil
 coverage-hits
+libfuzzer-dotnet

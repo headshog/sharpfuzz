@@ -8,11 +8,20 @@ namespace Jil.Fuzz
   {
     public static void Main(string[] args)
     {
+      //Fuzzer.LibFuzzer.Run(stream =>
       Fuzzer.OutOfProcess.Run(stream =>
       {
         try
         {
-          using (var reader = new StreamReader(stream))
+          /* For LibFuzzer.
+          string str = ""; 
+          for (int i = 0; i < stream.Length; i++)
+          {
+            str += (char)stream[i];
+          }
+          JSON.DeserializeDynamic(str);*/
+
+          using (var reader = new StreamReader(str))
           {
             JSON.DeserializeDynamic(reader);
           }
@@ -22,14 +31,3 @@ namespace Jil.Fuzz
     }
   }
 }
-
-/*namespace hello
-{
-  public class Program
-  {
-    public static void Main(string[] args)
-    {
-      Console.WriteLine("Hello, World!");
-    }
-  }
-}*/
